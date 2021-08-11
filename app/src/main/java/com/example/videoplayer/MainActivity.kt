@@ -64,13 +64,20 @@ class MainActivity : AppCompatActivity(),VideoAdapter.OnItemClickListener {
         val cursor = contentResolver.query(uri, null, null, null, null)
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                var title: String = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.TITLE));
-                var duration: String = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DURATION));
-                var data: String = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-                var uri = Uri.parse(data)
-                var durationModel = timeConversion(duration.toLong())
-                var videosDataClass  = VideoDataClass(title,durationModel,uri)
+                var title: String
+                var duration: Int
+                var data: String
+                if (cursor.getType(cursor.getColumnIndex(Constant.TITLE)) == FIELD_TYPE_STRING &&
+                        cursor.getType(cursor.getColumnIndex(Constant.DURATION)) == FIELD_TYPE_INTEGER &&
+                        cursor.getType(cursor.getColumnIndex(Constant.DATA)) == FIELD_TYPE_STRING) {
+                     title = cursor.getString(cursor.getColumnIndex(Constant.TITLE))
+                    duration = cursor.getInt(cursor.getColumnIndex(Constant.DURATION))
+                     data = cursor.getString(cursor.getColumnIndex(Constant.DATA))
+                    var uri = Uri.parse(data)
+                    var durationModel = timeConversion(duration.toLong())
+                    var videosDataClass  = VideoDataClass(title,durationModel,uri)
                     videoArrayList.add(videosDataClass)
+                }
             } while (cursor.moveToNext())
         }
     }
