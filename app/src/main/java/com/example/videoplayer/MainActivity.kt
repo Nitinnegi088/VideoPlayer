@@ -3,6 +3,8 @@ package com.example.videoplayer
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor.FIELD_TYPE_INTEGER
+import android.database.Cursor.FIELD_TYPE_STRING
 import android.graphics.Rect
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.videoplayer.Adapters.VideoAdapter
+import com.example.videoplayer.Constant.Constant
 import com.example.videoplayer.Model.VideoDataClass
 import com.example.videoplayer.VideoPlayScreen.VideoPlayScreen
 
